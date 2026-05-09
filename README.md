@@ -6,6 +6,17 @@
 
 ![Demo screenshot](../../submission/screenshot-warfarin-result.png)
 
+## Live demo
+
+- **Live MCP server:** https://powell-motel-warning-crown.trycloudflare.com
+- **Interactive demo UI:** https://powell-motel-warning-crown.trycloudflare.com/demo/ui/
+
+```bash
+curl -X POST https://powell-motel-warning-crown.trycloudflare.com/demo/run \
+  -H "Content-Type: application/json" \
+  -d '{"case_id": "ahrq_warfarin_tmp_smx"}'
+```
+
 ## What it does
 
 Given a patient's FHIR R4 bundle at discharge time, TransitionPilot returns a
