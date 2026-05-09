@@ -1,0 +1,42 @@
+{
+  "resourceType": "Bundle",
+  "id": "case-5-allergy-conflict",
+  "type": "collection",
+  "_meta": {"story": "Patient with documented penicillin allergy is being discharged on amoxicillin — allergy/medication conflict."},
+  "entry": [
+    {"resource": {
+      "resourceType": "Patient", "id": "pt-al-1",
+      "name": [{"family": "Demo", "given": ["AllergyConflict"]}],
+      "gender": "female", "birthDate": "1985-07-04"
+    }},
+    {"resource": {
+      "resourceType": "Encounter", "id": "enc-al-1",
+      "status": "in-progress",
+      "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "IMP"},
+      "subject": {"reference": "Patient/pt-al-1"},
+      "type": [{"text": "Inpatient — pneumonia"}]
+    }},
+    {"resource": {
+      "resourceType": "AllergyIntolerance", "id": "al-pcn-1",
+      "patient": {"reference": "Patient/pt-al-1"},
+      "clinicalStatus": {"coding": [{"code": "active"}]},
+      "type": "allergy",
+      "category": ["medication"],
+      "criticality": "high",
+      "code": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "7980", "display": "Penicillin"}],
+        "text": "penicillin"
+      },
+      "reaction": [{"description": "Hives, throat swelling — anaphylactic episode age 22"}]
+    }},
+    {"resource": {
+      "resourceType": "MedicationRequest", "id": "mr-amox-1",
+      "status": "active", "intent": "order",
+      "subject": {"reference": "Patient/pt-al-1"},
+      "medicationCodeableConcept": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "723", "display": "Amoxicillin"}],
+        "text": "amoxicillin 500 mg PO TID x 7 days"
+      }
+    }}
+  ]
+}

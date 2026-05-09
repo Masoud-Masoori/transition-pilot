@@ -1,0 +1,30 @@
+[project]
+name = "transition-pilot"
+version = "0.1.0"
+description = "FHIR-native Specialist Auditor MCP server — discharge failures prevented, with FHIR provenance."
+requires-python = ">=3.11"
+authors = [{ name = "Mas-AI Technologies", email = "hello@mas-ai.co" }]
+license = { text = "AGPL-3.0-or-later" }
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "httpx>=0.27",
+  "pydantic>=2.6",
+  "anthropic>=0.39",
+  "openai>=1.30",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0", "pytest-asyncio>=0.23", "respx>=0.20"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

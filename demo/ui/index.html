@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TransitionPilot — Discharge Failure Prevented</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="logo">⊕</span>
+    <div>
+      <div class="title">TransitionPilot</div>
+      <div class="tagline">FHIR-native Specialist Auditor · MCP server for hospital discharge</div>
+    </div>
+  </div>
+  <div class="case-picker">
+    <label>Demo case:
+      <select id="case-select"></select>
+    </label>
+    <button id="run">Run</button>
+    <span id="latency" class="latency"></span>
+  </div>
+</header>
+
+<main class="split">
+
+  <section class="left day6">
+    <div class="day-label">DAY 6</div>
+    <h2>What actually happened</h2>
+    <p class="case-narrative" id="case-narrative">
+      Loading case story…
+    </p>
+    <div class="readmission-card">
+      <div class="readmission-tag">READMITTED</div>
+      <div class="readmission-line">Patient returns to ED with GI bleed, INR <strong>8.2</strong>.</div>
+      <div class="readmission-line muted">Cause: drug-drug interaction nobody flagged at discharge.</div>
+      <div class="cost">Estimated avoidable cost: <strong>$15,400 – $22,000</strong></div>
+    </div>
+  </section>
+
+  <section class="right day0">
+    <div class="day-label">DAY 0</div>
+    <h2>What TransitionPilot caught — in <span id="runtime">14</span>ms</h2>
+    <div id="memo" class="memo">Click <em>Run</em> to invoke the MCP server.</div>
+  </section>
+
+</main>
+
+<aside id="evidence-panel" class="evidence-panel" hidden>
+  <div class="evidence-head">
+    <span class="evidence-title">FHIR Evidence</span>
+    <button id="close-evidence">✕</button>
+  </div>
+  <div id="evidence-body"></div>
+</aside>
+
+<footer class="foot">
+  Brand : Specialist Auditor · Not a summarizer · Evidence-or-Null safety rule enforced
+  <span class="float-right">MCP · FHIR R4 · marketplace-ready</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

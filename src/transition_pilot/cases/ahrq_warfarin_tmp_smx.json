@@ -1,0 +1,80 @@
+{
+  "resourceType": "Bundle",
+  "id": "ahrq-warfarin-tmp-smx",
+  "type": "collection",
+  "_meta": {
+    "story": "Modeled on AHRQ WebM&M anticoagulation cases. 67yo with AFib on chronic warfarin admitted for cellulitis, discharged on TMP-SMX with no INR follow-up. Day 6 readmission with GI bleed, INR 8.2.",
+    "source": "Synthetic FHIR R4. Clinical pattern from AHRQ WebM&M / NEJM Catalyst published cases. Used for educational/hackathon demonstration."
+  },
+  "entry": [
+    {"resource": {
+      "resourceType": "Patient", "id": "pt-ahrq-1",
+      "name": [{"family": "Demo", "given": ["Patient"]}],
+      "gender": "female", "birthDate": "1958-04-12"
+    }},
+    {"resource": {
+      "resourceType": "Encounter", "id": "enc-ahrq-1",
+      "status": "in-progress",
+      "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "IMP", "display": "inpatient"},
+      "subject": {"reference": "Patient/pt-ahrq-1"},
+      "period": {"start": "2026-05-04T08:00:00Z", "end": "2026-05-09T11:00:00Z"},
+      "type": [{"text": "Inpatient — cellulitis"}]
+    }},
+    {"resource": {
+      "resourceType": "Condition", "id": "cond-afib-1",
+      "subject": {"reference": "Patient/pt-ahrq-1"},
+      "code": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10", "code": "I48.91", "display": "Atrial fibrillation"}], "text": "Atrial fibrillation"},
+      "clinicalStatus": {"coding": [{"code": "active"}]}
+    }},
+    {"resource": {
+      "resourceType": "Condition", "id": "cond-cellulitis-1",
+      "subject": {"reference": "Patient/pt-ahrq-1"},
+      "code": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10", "code": "L03.115", "display": "Cellulitis of right lower limb"}], "text": "Cellulitis"},
+      "clinicalStatus": {"coding": [{"code": "active"}]}
+    }},
+    {"resource": {
+      "resourceType": "MedicationRequest", "id": "mr-warfarin-1",
+      "status": "active", "intent": "order",
+      "subject": {"reference": "Patient/pt-ahrq-1"},
+      "encounter": {"reference": "Encounter/enc-ahrq-1"},
+      "medicationCodeableConcept": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "11289", "display": "Warfarin sodium"}],
+        "text": "Warfarin 5 mg PO daily (continued from home)"
+      },
+      "dosageInstruction": [{"text": "5 mg PO daily, target INR 2-3 for AFib"}]
+    }},
+    {"resource": {
+      "resourceType": "MedicationRequest", "id": "mr-tmp-smx-1",
+      "status": "active", "intent": "order",
+      "subject": {"reference": "Patient/pt-ahrq-1"},
+      "encounter": {"reference": "Encounter/enc-ahrq-1"},
+      "medicationCodeableConcept": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "10180,10831", "display": "Trimethoprim/Sulfamethoxazole"}],
+        "text": "Bactrim DS PO BID x 10 days (new at discharge)"
+      },
+      "dosageInstruction": [{"text": "1 tab PO BID x 10 days"}]
+    }},
+    {"resource": {
+      "resourceType": "MedicationRequest", "id": "mr-metoprolol-1",
+      "status": "active", "intent": "order",
+      "subject": {"reference": "Patient/pt-ahrq-1"},
+      "medicationCodeableConcept": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "6918", "display": "Metoprolol"}],
+        "text": "Metoprolol 50 mg PO BID (continued)"
+      }
+    }},
+    {"resource": {
+      "resourceType": "Observation", "id": "obs-inr-baseline-1",
+      "status": "final",
+      "subject": {"reference": "Patient/pt-ahrq-1"},
+      "code": {"coding": [{"system": "http://loinc.org", "code": "6301-6", "display": "INR"}]},
+      "valueQuantity": {"value": 2.4, "unit": "ratio"},
+      "effectiveDateTime": "2026-05-04T09:00:00Z"
+    }},
+    {"resource": {
+      "resourceType": "AllergyIntolerance", "id": "allergy-1",
+      "patient": {"reference": "Patient/pt-ahrq-1"},
+      "code": {"coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "7980", "display": "Penicillin"}], "text": "penicillin"}
+    }}
+  ]
+}

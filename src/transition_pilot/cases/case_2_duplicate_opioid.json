@@ -1,0 +1,47 @@
+{
+  "resourceType": "Bundle",
+  "id": "case-2-duplicate-opioid",
+  "type": "collection",
+  "_meta": {"story": "Post-op patient with two active opioid prescriptions at discharge — oxycodone IR + hydromorphone."},
+  "entry": [
+    {"resource": {
+      "resourceType": "Patient", "id": "pt-op-1",
+      "name": [{"family": "Demo", "given": ["Postop"]}],
+      "gender": "male", "birthDate": "1979-08-22"
+    }},
+    {"resource": {
+      "resourceType": "Encounter", "id": "enc-op-1",
+      "status": "in-progress",
+      "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "IMP"},
+      "subject": {"reference": "Patient/pt-op-1"},
+      "type": [{"text": "Inpatient — orthopedic surgery"}]
+    }},
+    {"resource": {
+      "resourceType": "MedicationRequest", "id": "mr-oxy-1",
+      "status": "active", "intent": "order",
+      "subject": {"reference": "Patient/pt-op-1"},
+      "medicationCodeableConcept": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "7804", "display": "Oxycodone"}],
+        "text": "Oxycodone IR 5 mg q4h PRN"
+      }
+    }},
+    {"resource": {
+      "resourceType": "MedicationRequest", "id": "mr-dilaudid-1",
+      "status": "active", "intent": "order",
+      "subject": {"reference": "Patient/pt-op-1"},
+      "medicationCodeableConcept": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "5489", "display": "Hydromorphone"}],
+        "text": "Hydromorphone (Dilaudid) 2 mg q4h PRN"
+      }
+    }},
+    {"resource": {
+      "resourceType": "MedicationRequest", "id": "mr-acet-1",
+      "status": "active", "intent": "order",
+      "subject": {"reference": "Patient/pt-op-1"},
+      "medicationCodeableConcept": {
+        "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "161", "display": "Acetaminophen"}],
+        "text": "Acetaminophen 500 mg q6h PRN"
+      }
+    }}
+  ]
+}
