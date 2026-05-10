@@ -23,6 +23,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from .fhir_client import FhirClient, load_local_bundle
+from .mcp_app import mcp as mcp_server
 from .reconciliation import run_all
 from .schemas import (
     AuditTask,
@@ -40,10 +41,16 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name
 CASES_DIR = Path(__file__).resolve().parent / "cases"
 DEMO_UI_DIR = Path(__file__).resolve().parents[2] / "demo" / "ui"
 
+# Build FastMCP's ASGI app FIRST so we can hand its lifespan to FastAPI.
+# Without lifespan integration, FastMCP's StreamableHTTPSessionManager fails
+# with "task group not initialized" on every /mcp request.
+mcp_streamable_app = mcp_server.http_app(transport="streamable-http", path="/")
+
 app = FastAPI(
     title="TransitionPilot",
     version="0.1.0",
     description="FHIR-native Specialist Auditor — discharge failures prevented with FHIR provenance.",
+    lifespan=mcp_streamable_app.lifespan,
 )
 app.add_middleware(
     CORSMiddleware,
@@ -138,6 +145,12 @@ def demo_case_raw(case_id: str):
 # and points a browser at http://127.0.0.1:8089/demo/ui/ for the live demo.
 if DEMO_UI_DIR.exists():
     app.mount("/demo/ui", StaticFiles(directory=str(DEMO_UI_DIR), html=True), name="demo-ui")
+
+
+# Mount the FastMCP streamable-http app at /mcp.
+# This is what the Prompt Opinion platform connects to during a chat session.
+# The REST endpoints above stay for the demo UI and local dev.
+app.mount("/mcp", mcp_streamable_app)
 
 
 async def _run_pipeline(
