@@ -10,9 +10,8 @@
 |---|---|---|
 | ![](docs/screenshots/screenshot-warfarin-result.png) | ![](docs/screenshots/screenshot-evidence-panel.png) | ![](docs/screenshots/screenshot-tracker-dashboard.png) |
 
-**Demo video:** [v0.1.0-demo release →
-demo-captioned.mp4](https://github.com/Masoud-Masoori/transition-pilot/releases/download/v0.1.0-demo/demo-captioned.mp4)
-(32 seconds, captions burned in).
+**Demo video:** [▶ YouTube — TransitionPilot demo (32 s, captions burned in)](https://youtu.be/f1QRJYR_lqM)
+&nbsp; · &nbsp; backup: [v0.1.0-demo release → demo-captioned.mp4](https://github.com/Masoud-Masoori/transition-pilot/releases/download/v0.1.0-demo/demo-captioned.mp4)
 
 ## Live demo
 
