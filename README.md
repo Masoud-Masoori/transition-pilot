@@ -4,7 +4,15 @@
 > Not a summarizer. Not a chatbot. An auditor that catches the discharge failures
 > nobody flagged — and proves it with clickable FHIR provenance.
 
-![Demo screenshot](../../submission/screenshot-warfarin-result.png)
+![Demo screenshot](docs/screenshots/screenshot-warfarin-result.png)
+
+| Memo result | Evidence panel | Tracker dashboard |
+|---|---|---|
+| ![](docs/screenshots/screenshot-warfarin-result.png) | ![](docs/screenshots/screenshot-evidence-panel.png) | ![](docs/screenshots/screenshot-tracker-dashboard.png) |
+
+**Demo video:** [v0.1.0-demo release →
+demo-captioned.mp4](https://github.com/Masoud-Masoori/transition-pilot/releases/download/v0.1.0-demo/demo-captioned.mp4)
+(32 seconds, captions burned in).
 
 ## Live demo
 
