@@ -8,11 +8,11 @@
 
 ## Live demo
 
-- **Live MCP server:** https://powell-motel-warning-crown.trycloudflare.com
-- **Interactive demo UI:** https://powell-motel-warning-crown.trycloudflare.com/demo/ui/
+- **Live MCP server:** https://tires-roberts-containers-landscape.trycloudflare.com
+- **Interactive demo UI:** https://tires-roberts-containers-landscape.trycloudflare.com/demo/ui/
 
 ```bash
-curl -X POST https://powell-motel-warning-crown.trycloudflare.com/demo/run \
+curl -X POST https://tires-roberts-containers-landscape.trycloudflare.com/demo/run \
   -H "Content-Type: application/json" \
   -d '{"case_id": "ahrq_warfarin_tmp_smx"}'
 ```
